@@ -11,7 +11,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150214035629) do
+ActiveRecord::Schema.define(version: 20150214055733) do
+
+  create_table "boxes", force: :cascade do |t|
+    t.text     "access_token"
+    t.datetime "updated_at",   null: false
+    t.datetime "created_at",   null: false
+    t.integer  "user_id"
+    t.integer  "open"
+  end
+
+  add_index "boxes", ["user_id"], name: "index_boxes_on_user_id"
+
+  create_table "humitemps", force: :cascade do |t|
+    t.float    "humidity"
+    t.float    "temperature"
+    t.datetime "measured_at"
+    t.datetime "created_at",  null: false
+    t.integer  "box_id"
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "humitemps", ["box_id"], name: "index_humitemps_on_box_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
