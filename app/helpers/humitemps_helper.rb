@@ -1,0 +1,2 @@
+module HumitempsHelper
+end

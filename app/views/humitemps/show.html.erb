@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Humidity:</strong>
+  <%= @humitemp.humidity %>
+</p>
+
+<p>
+  <strong>Temperature:</strong>
+  <%= @humitemp.temperature %>
+</p>
+
+<p>
+  <strong>Measured at:</strong>
+  <%= @humitemp.measured_at %>
+</p>
+
+<p>
+  <strong>Created at:</strong>
+  <%= @humitemp.created_at %>
+</p>
+
+<p>
+  <strong>Box:</strong>
+  <%= @humitemp.box %>
+</p>
+
+<%= link_to 'Edit', edit_humitemp_path(@humitemp) %> |
+<%= link_to 'Back', humitemps_path %>

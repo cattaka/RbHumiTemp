@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Access token:</strong>
+  <%= @box.access_token %>
+</p>
+
+<p>
+  <strong>Updated at:</strong>
+  <%= @box.updated_at %>
+</p>
+
+<p>
+  <strong>Created at:</strong>
+  <%= @box.created_at %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @box.user %>
+</p>
+
+<p>
+  <strong>Open:</strong>
+  <%= @box.open %>
+</p>
+
+<%= link_to 'Edit', edit_box_path(@box) %> |
+<%= link_to 'Back', boxes_path %>

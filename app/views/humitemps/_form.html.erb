@@ -1,0 +1,33 @@
+<%= form_for(@humitemp) do |f| %>
+  <% if @humitemp.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@humitemp.errors.count, "error") %> prohibited this humitemp from being saved:</h2>
+
+      <ul>
+      <% @humitemp.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :humidity %><br>
+    <%= f.text_field :humidity %>
+  </div>
+  <div class="field">
+    <%= f.label :temperature %><br>
+    <%= f.text_field :temperature %>
+  </div>
+  <div class="field">
+    <label for="access_token">Access Token</label><br>
+    <input id="access_token" name="humitemp[access_token]" type="text" />
+  </div>
+  <div class="field">
+    <%= f.label :measured_at %><br>
+    <%= f.datetime_select :measured_at, :include_seconds => true %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
