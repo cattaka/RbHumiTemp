@@ -1,6 +1,6 @@
 class HumitempsController < ApplicationController
   before_action :set_humitemp, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!
+  before_action :authenticate_user! =>  [:show, :edit, :update, :destroy]
   protect_from_forgery :except => :create
 
   # GET /humitemps
