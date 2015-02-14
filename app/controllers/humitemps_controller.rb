@@ -1,12 +1,16 @@
 class HumitempsController < ApplicationController
   before_action :set_humitemp, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!
+  before_action :authenticate_user! =>  [:show, :edit, :update, :destroy]
   protect_from_forgery :except => :create
 
   # GET /humitemps
   # GET /humitemps.json
   def index
-    @humitemps = Humitemp.all
+    boxes = Box.where(user_id: current_user.id)
+    @humitemps = []
+    boxes.each do |box|
+      @humitemps += Humitemp.where(box_id: box.id)
+    end
   end
 
   # GET /humitemps/1
@@ -29,7 +33,6 @@ class HumitempsController < ApplicationController
     @humitemp = Humitemp.new(humitemp_params)
 
     @humitemp.box = Box.find_by_access_token(params[:humitemp][:access_token])
-binding.pry
     respond_to do |format|
       if @humitemp.save
         format.html { redirect_to @humitemp, notice: 'Humitemp was successfully created.' }
@@ -69,6 +72,8 @@ binding.pry
     # Use callbacks to share common setup or constraints between actions.
     def set_humitemp
       @humitemp = Humitemp.find(params[:id])
+      box = Box.find(@humitemp.box_id) if @humitemp
+      raise SecurityTransgression if !box || box.user_id != current_user.id
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
